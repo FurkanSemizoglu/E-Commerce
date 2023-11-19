@@ -12,9 +12,9 @@ const router = express.Router();
 
 router.get("/products" ,  getAllProducts);
 router.get("/product/:id" , getProduct);
-router.post("/newProduct" , authenticateMid , createProduct);
-router.patch("/updateProduct/:id" , authenticateMid ,updateProduct)
-router.delete("/product/:id" , authenticateMid , deleteProduct)
+router.post("/newProduct" ,  createProduct);
+router.patch("/updateProduct/:id", updateProduct)
+router.delete("/product/:id" ,  deleteProduct)
 
 
 module.exports =  router;
