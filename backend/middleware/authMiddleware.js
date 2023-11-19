@@ -1,21 +1,31 @@
-const jwt = require('jsonwebtoken');
+const jwt = require("jsonwebtoken");
+const User = require("../models/user.js");
 
-const authenticate = (req, res, next) => {
-    const token = req.header('Authorization');
-  
-    // Check if the request has a valid token
-    if (!token) {
-      return res.status(401).json({ message: 'Unauthorized' });
+const authenticate = async (req, res, next) => {
+  const token = req.cookies;
+
+  // Check if the request has a valid token
+  if (!token) {
+    return res.status(401).json({ message: "login olunuz" });
+  }
+
+  const decodedData = jwt.verify(token, process.env.JWT_SECRET_KEY);
+  // Verify the token
+  if (!decodedData) {
+    return res.status(403).json({ message: "Invalid token" });
+  }
+
+  next();
+};
+
+
+const roleChecked = (...roles) =>{
+    return (req,res,next) => {
+        if (!roles.includes(req.User.role)) {
+            return res.status(500).json({ message : "Giriş için izniniz yoktur"})
+        }
+        next();
     }
-  
-    // Verify the token
-    jwt.verify(token, process.env.JWT_SECRET_KEY, (err, user) => {
-      if (err) {
-        return res.status(403).json({ message: 'Invalid token' });
-      }
-      req.user = user;
-      next();
-    });
-  };
-  
-  module.exports = authenticate;
+}
+
+module.exports = {authenticate , roleChecked};

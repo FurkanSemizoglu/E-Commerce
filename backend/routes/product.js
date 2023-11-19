@@ -6,14 +6,15 @@ const {
   updateProduct,
   deleteProduct,
 } = require("../controllers/product.js");
+const { authenticateMid } = require("../middleware/authMiddleware.js");
 
 const router = express.Router();
 
-router.get("/products" , getAllProducts);
+router.get("/products" ,  getAllProducts);
 router.get("/product/:id" , getProduct);
-router.post("/newProduct" , createProduct);
-router.patch("/updateProduct/:id" , updateProduct)
-router.delete("/product/:id" , deleteProduct)
+router.post("/newProduct" , authenticateMid , createProduct);
+router.patch("/updateProduct/:id" , authenticateMid ,updateProduct)
+router.delete("/product/:id" , authenticateMid , deleteProduct)
 
 
 module.exports =  router;

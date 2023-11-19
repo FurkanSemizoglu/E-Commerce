@@ -1,5 +1,5 @@
-import User from "../models/user";
-import { emailRegex, passwordRegex } from "../utils/regexUtils";
+const User =require("../models/user.js") ;
+const { emailRegex, passwordRegex } =  require("../utils/regexUtils.js");
 const bcrypt = require("bcrypt");7
 const jwt = require('jsonwebtoken');
 
@@ -7,7 +7,10 @@ export const register = async (req, res) => {
   try {
     const { name, email, password, role } = req.body;
 
+     
+    
     const activeUser = await User.findOne({ email });
+
 
     if (activeUser) {
       return res
@@ -17,7 +20,7 @@ export const register = async (req, res) => {
 
     if (!passwordRegex.test(password)) {
       return res.status(400).json({
-        message: "password has to include at least 1 uppercase and 1 digit",
+        message: "password has to include at least 1 uppercase and 1 digit", 
       });
     }
 
@@ -42,12 +45,17 @@ export const register = async (req, res) => {
       role,
     });
 
+    const cookieOptions = {
+        httpOnly : true,
+        expires : new Date(Date.now() + 5 * 24 * 60 *60 *1000 ) 
+    } 
+
     const result = await newUser.save();
 
     const token = jwt.sign({ userId: result._id}, process.env.JWT_SECRET_KEY, { expiresIn: '1h' });
 
     if (result) {
-      res.status(201).json({ message: "User registered successfully" , result , token });
+      res.status(201).cookie("token" ,token ,cookieOptions).json({ message: "User registered successfully" , result , token });
     } else {
       res.status(400).json({ message: "User couldnt registered" });
     }

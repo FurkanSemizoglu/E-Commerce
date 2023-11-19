@@ -5,6 +5,7 @@ const bodyParser = require("body-parser");
 const db = require("./config/db.js")
 const productRoutes = require("./routes/product.js");
 const { MongoClient } = require("mongodb");
+const cookieParser = require("cookie-parser");
 
 dotenv.config();
 
@@ -12,17 +13,18 @@ const app = express();
 
 app.use(bodyParser.json({ limit: "30mb", extended: "true" }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: "true" }));
+app.use(cookieParser());
 
 app.use(cors);
 
-app.use("/", (req, res) => {
+/* app.use("/", (req, res) => {
   res.status(200).json({
     message: "server is running",
   });
-});
+}); */
 
-/* app.use("/" , productRoutes)
- */
+ app.use("/" , productRoutes)
+ 
 
 const PORT = process.env.PORT;
 db();
