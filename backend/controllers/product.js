@@ -37,11 +37,19 @@ const deleteProduct = async (req, res) => {
 };
 
 const createProduct = async (req, res) => {
-  
   try {
-    const { name, description, price, category, brand, stock, images } = req.body;
-      
-    const newProduct = new Product({ name, description, price, category, brand, stock, images})
+    const { name, description, price, category, brand, stock, images } =
+      req.body;
+
+    const newProduct = new Product({
+      name,
+      description,
+      price,
+      category,
+      brand,
+      stock,
+      images,
+    });
 
     const result = newProduct.save();
 
@@ -52,19 +60,26 @@ const createProduct = async (req, res) => {
   }
 };
 
-
 const updateProduct = async (req, res) => {
-    try {
-      const updatedProduct = await Product.findByIdAndUpdate(
-        req.params.productId,
-        req.body,
-        { new: true }
-      );
-      if (!updatedProduct) {
-        return res.status(404).json({ message: 'Ürün bulunamadı' });
-      }
-      res.json(updatedProduct);
-    } catch (error) {
-      res.status(400).json({ message: error.message });
+  try {
+    const updatedProduct = await Product.findByIdAndUpdate(
+      req.params.productId,
+      req.body,
+      { new: true }
+    );
+    if (!updatedProduct) {
+      return res.status(404).json({ message: "Ürün bulunamadı" });
     }
-  };
+    res.status(200).json(updatedProduct);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+};
+
+module.exports = {
+  getAllProducts,
+  getProduct,
+  createProduct,
+  updateProduct,
+  deleteProduct,
+};

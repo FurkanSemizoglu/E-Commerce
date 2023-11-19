@@ -1,11 +1,9 @@
+const { MongoClient } = require("mongodb");
 const mongoose = require("mongoose");
 
 const db = () => {
-  mongoose
-    .connect(process.env.DATABASE_URI, {
-      useNewUrlParser: true,
-      UseUnifiedTopology: true
-    })
+  MongoClient
+    .connect(process.env.DATABASE_URI)
     .then(() =>{
         console.log("mongodb connected");
     })
