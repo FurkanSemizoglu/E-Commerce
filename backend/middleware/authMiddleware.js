@@ -1,7 +1,7 @@
 const jwt = require("jsonwebtoken");
 const User = require("../models/user.js");
 
-const authenticate = async (req, res, next) => {
+const authenticateMid = async (req, res, next) => {
   const token = req.cookies;
 
   // Check if the request has a valid token
@@ -28,4 +28,4 @@ const roleChecked = (...roles) =>{
     }
 }
 
-module.exports = {authenticate , roleChecked};
+module.exports = {authenticateMid , roleChecked};

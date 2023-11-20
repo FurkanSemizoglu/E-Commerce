@@ -6,6 +6,8 @@ const db = require("./config/db.js")
 const productRoutes = require("./routes/product.js");
 const { MongoClient } = require("mongodb");
 const cookieParser = require("cookie-parser");
+const userRoutes = require("./routes/user.js");
+const { default: mongoose } = require("mongoose");
 
 dotenv.config();
 
@@ -17,41 +19,36 @@ app.use(cookieParser());
 
 app.use(cors);
 
-/* app.use("/", (req, res) => {
-  res.status(200).json({
-    message: "server is running",
-  });
-}); */
-
- app.use("/" , productRoutes)
- 
-
-const PORT = process.env.PORT;
-db();
-app.listen(PORT, () => {
-  console.log(`server is running ${PORT} port`);
-});
-/* 
- */
-
 app.use("/", (req, res) => {
   res.status(200).json({
     message: "server is running",
   });
 });
+/* 
+ app.use("/" , productRoutes)
+ app.use("/" , userRoutes)
+  */
 
-/* (async () => {
-  MongoClient.connect(process.env.DATABASE_URI)
-    .then(() => {
-      console.log("mongodb connected");
-      app.listen(PORT, () => {
-        console.log(`server is running ${PORT} port`);
-      });
-    })
-    .catch((error) => {
-      console.log("mogodb connection failed", error);
-    });
-  
-})(); */
+const PORT = process.env.PORT;
+/* db();
+app.listen(PORT, () => {
+  console.log(`server is running ${PORT} port`);
+});
+ */
+mongoose
+.connect(process.env.DATABASE_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+})
+.then(() => {
+  console.log("Connected to MongoDB");
+  app.listen(PORT, () => {
+    console.log("The server is running on port " + PORT);
+   
+  });
+})
+.catch((error) => {
+  console.error("Error connecting to MongoDB:", error);
+}); 
 
 
