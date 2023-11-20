@@ -70,6 +70,30 @@ nav {
   background-color: bisque;
   border-radius: 5px;
   margin-right: 1.5px;
+}
 
-  
+
+/*------------------- end of searchbar container -------------------------*/
+
+/*------------------- Start of scategories part -------------------------*/
+
+.catogories-part {
+    width: 80%;
+    margin: 30px auto;
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.catogories-part .left-information-card {
+    width: 20%;
+}
+
+.catogories-part .product-cards {
+    display: flex;
+    width: 80%;
+}
+
+.catogories-part .product-cards .product-card {
+    /* buraları doldur cardları düzenlemede kaldı */
 }

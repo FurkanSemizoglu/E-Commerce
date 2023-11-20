@@ -41,6 +41,33 @@ function App() {
           </div>
         </div>
       </div>
+
+      <div className="catogories-part">
+        <div className="left-information-card">
+          <div className="information-title">Best Selling Plants</div>
+          <div className="information-content">Easiest way to healthy life by buying your favorite plants </div>
+          <div className="information-button">See more</div>
+        </div>
+
+        <div className="product-cards">
+          <div className="product-card">
+            <img src="" alt="product-photo"/>
+            <div className="product-name"></div>
+            <div className="product-price"></div>
+          </div>
+          <div className="product-card">
+          <img src="" alt="product-photo"/>
+            <div className="product-name"></div>
+            <div className="product-price"></div>
+          </div>
+          <div className="product-card">
+          <img src="" alt="product-photo"/>
+            <div className="product-name"></div>
+            <div className="product-price"></div>
+          </div>
+        </div>
+      </div>
+
     </>
   );
 }
