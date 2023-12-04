@@ -47,7 +47,7 @@ nav {
 .navbar-articles ul li a:hover{
   font-weight: 600;
   color: #1E1E1E;
-}
+  }
 
 .navbar-icons ul {
   list-style: none;
@@ -130,6 +130,10 @@ nav {
   padding-left: 20px;
 }
 
+.search-area-view .searchbar input:focus {
+  border: none;
+}
+
 
 .search-area-view .searchbar .search-button {
   width: 45px;
@@ -169,9 +173,43 @@ nav {
 
 .catogories-part .product-cards {
   display: flex;
-  width: 80%;
+  width: 75%;
+  justify-content: space-between;
+  
+ 
+}
+.catogories-part .left-information-card .information-title{
+
+  font-size: 24px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+
+}
+.catogories-part .left-information-card .information-content{
+  font-weight: 400;
+  color:  #B6B5B5; 
+  margin-top: 10px;
+  
 }
 
-.catogories-part .product-cards .product-card {
+.catogories-part .left-information-card .information-button{
+
+  display : flex;
+  width: 70%;
+  height: 40px;
+  justify-content: center;
+  align-items: center;
+  background-color:#C1DCDC ;
+  border-radius : 5px;
+  margin-top: 15px;
+}
+.catogories-part .product-cards .product-card  {
   /* buraları doldur cardları düzenlemede kaldı */
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+.catogories-part .product-cards .product-card .product-photo{
+  height: 80%;
 }

@@ -20,6 +20,7 @@ app.use(cookieParser());
 app.use(cors);
 
 app.use("/", (req, res) => {
+  console.log("server start to run ")
   res.status(200).json({
     message: "server is running",
   });
