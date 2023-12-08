@@ -1,9 +1,7 @@
 import "./App.css";
-import { IoPersonOutline } from "react-icons/io5";
-import { SlBasket } from "react-icons/sl";
-import { BiMenuAltRight } from "react-icons/bi";
-import flowerPhoto from "./images/flowerPhoto.png"
-import { CiSearch } from "react-icons/ci";
+import Navbar from "./components/navbar";
+import SearchArea from "./components/searchArea";
+import CategoriesView from "./components/categoriesView";
 
 //import flowerSVG from "./images/flower-photo.svg.svg"
 /* import ReactSVG from 'react-svg';
@@ -11,84 +9,27 @@ import { ReactComponent as flowerSVG } from './images/flowerPhotoSVG.svg'; */
 function App() {
   return (
     <>
-      <nav>
-        <div className="left-bar">
-          <div className="logo">F-COMMERCE</div>
-        </div>
+      <Navbar />
 
-        <div className="right-bar">
-          <div className="navbar-articles">
-            <ul>
-              <li>
-                <a id="" href="">Home</a>
-              </li>
-              <li>
-                <a href="">Products</a>
-              </li>
-              <li>
-                <a href="">Contacts</a>
-              </li>
-            </ul>
-          </div>
-          <div className="navbar-icons">
-            <ul>
-              <li><a href=""><SlBasket /></a></li>
-              <li><a href=""><IoPersonOutline /> </a></li>
-              <li> <div className="separater-line"></div></li>
-              <li>  <a href=""><BiMenuAltRight /></a></li>
-            </ul>
-            
-            
-          
-          </div>
-        </div>
-      </nav>
+      <SearchArea />
 
-      <div className="search-area-view">
-        <div className="search-area-content">
-          <div className="search-area-title"><h3>Buy your <br />dream plants</h3></div>
-          <div className="search-area-num-content">            
+      <CategoriesView />
+
+      <div className="about-content-view">
+          <div className="main-top-header"><h2>About Us</h2></div>
+          <div className="second-header"><h4>Order now and appreciate the beauty of nature</h4></div>
+
+          <div className="bottom-contents">
+            <div className="content">
+                <div className="image-pace"></div>
+                <div className="content-header">Large Assortment</div>
+                <div className="content-text">we offer many different types of products with fewer variations in each category.</div>
+            </div>
           </div>
-          <div className="searchbar">
-            <input type="text" placeholder="What are you looking for?" />
-            <div className="search-button"><CiSearch className="searchIcon"/></div>
-          </div>
-        </div>
-        <div className="search-area-view-image">
-         
-        {/*   <ReactSVG src={flowerSVG} /> */}
-          <img src={flowerPhoto} alt="" />
-        </div>
 
       </div>
 
-      <div className="catogories-part">
-        <div className="left-information-card">
-          <div className="information-title">Best Selling  <br />Plants</div>
-          <div className="information-content">Easiest way to <br /> healthy life by buying <br /> your favorite plants </div>
-          <div className="information-button">See more
-          <div className="information-button-icon"></div>
-          </div>
-        </div>
-
-        <div className="product-cards">
-          <div className="product-card">
-            <img className="product-photo" src="" alt="product-photo"/>
-            <div className="product-name">Tennis Ball</div>
-            <div className="product-price">1000 USD</div>
-          </div>
-          <div className="product-card">
-          <img className="product-photo" src="" alt="product-photo"/>
-            <div className="product-name">Tennis Ball</div>
-            <div className="product-price">1000 USD</div>
-          </div>
-          <div className="product-card">
-          <img className="product-photo" src="" alt="product-photo"/>
-            <div className="product-name">Tennis Ball</div>
-            <div className="product-price">1000 USD</div>
-          </div>
-        </div>
-      </div>
+      
 
     </>
   );
